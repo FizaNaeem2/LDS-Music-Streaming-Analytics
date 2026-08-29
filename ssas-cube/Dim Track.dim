@@ -1,0 +1,344 @@
+<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="87cad92e-f4f8-4fe1-8031-1c844e1032da" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Track</ID>
+  <Name>Dim Track</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1589" scrolltop="-21922" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6392" y="15600" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Track" left="-1525" top="-22226" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3175" height="8953" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000670c0000f9220000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="YOUR_SQL_USERNAME_Dim_Track" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-1589</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-21922</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>-1525</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>-22226</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="189">
+            <Shape Id="Id Track" Expanded="false">
+              <Attributes>
+                <Attribute Id="Id Track" />
+                <Attribute Id="Avg Token Per Clause" />
+                <Attribute Id="Char Per Tok" />
+                <Attribute Id="Explicit" />
+                <Attribute Id="Language" />
+                <Attribute Id="n Sentences" />
+                <Attribute Id="Swear EN" />
+                <Attribute Id="Swear IT" />
+                <Attribute Id="Title" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Song Category" Expanded="false">
+              <Attributes>
+                <Attribute Id="Song Category" />
+              </Attributes>
+              <Position x="261" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="aa552c7a-2397-409b-bef8-f5a624768d41">
+    <DataSourceViewID>YOUR_DATABASE</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="7165febd-b46b-454e-8490-fbe6464593b0">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="3ec61a8e-085d-494c-bc48-a1de18467e09">
+      <ID>Id Track</ID>
+      <Name>Id Track</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9080e7f2-ef4d-454f-b13c-eeac822937af">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="07e9926b-1295-4ff1-b948-14266c9461cd">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>id_track</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="373246e6-8bd0-419b-92cc-06443f1faad7">
+        <DataType>WChar</DataType>
+        <DataSize>400</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="d35aa52d-7b0b-47a3-94ed-9919b2784af0">
+          <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+          <ColumnID>title</ColumnID>
+        </Source>
+      </NameColumn>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="ca4d2806-3f57-4d2a-ac5a-fcd399bf874e">
+          <AttributeID>Title</AttributeID>
+          <Name>Title</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1eaf04ff-970d-4a45-ba21-a9487c9a7df1">
+          <AttributeID>Song Category</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>Song Category</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1af9d8f3-5168-45b8-a1ff-757466f71a43">
+          <AttributeID>Explicit</AttributeID>
+          <Name>Explicit</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="634c494b-7a40-4cc2-a38e-0871aa7df679">
+          <AttributeID>n Sentences</AttributeID>
+          <Name>n Sentences</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="003c2483-1de6-4a7e-91dc-66c5e86cd790">
+          <AttributeID>Char Per Tok</AttributeID>
+          <Name>Char Per Tok</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5f749f72-6405-4c4d-80e8-2e069d88b7df">
+          <AttributeID>Avg Token Per Clause</AttributeID>
+          <Name>Avg Token Per Clause</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e109ca21-c224-4a0c-9468-f86e3f18beb3">
+          <AttributeID>Swear IT</AttributeID>
+          <Name>Swear IT</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e1979821-7c10-47bb-b09b-00e73bdc940b">
+          <AttributeID>Swear EN</AttributeID>
+          <Name>Swear EN</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b14f960e-2640-474b-9805-bf25ae714887">
+          <AttributeID>Language</AttributeID>
+          <Name>Language</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="58323962-97c9-4a33-9ac2-09f241ce3c44">
+      <ID>Title</ID>
+      <Name>Title</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="29363bfb-b9ee-4618-8cc5-0e7c8a64ec4c">
+          <DataType>WChar</DataType>
+          <DataSize>400</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d0f77691-4df8-41e9-91b4-2e2b5bf5712c">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>title</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bd867fed-4f17-4e9e-b676-407b69b30178">
+      <ID>Song Category</ID>
+      <Name>Song Category</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c8781b2f-a5e7-4a0e-a4d8-ec4fc7d01d9f">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8320bdd9-3695-4a1c-9a08-949ae048b1c1">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>song_category</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+      <AttributeHierarchyDisplayFolder>Lyrical Metrics</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="b7167446-2e36-422e-ac18-51ccf1460c6a">
+      <ID>Explicit</ID>
+      <Name>Explicit</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3b44adcd-97cb-45f8-8161-cc7d53a39834">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="26708389-da1d-4a7c-bed3-612d5a372292">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>explicit</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="c2db36af-d75a-4e10-b24a-b4b125a71273">
+      <ID>n Sentences</ID>
+      <Name>n Sentences</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ff64e3f6-8df3-48ed-a86e-a152e527b306">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d7cabf6f-8026-4783-84f6-5580dfdf2d5f">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>n_sentences</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Lyrical Metrics</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="98cab8b4-814a-4e2f-8043-b80fb81bcbe2">
+      <ID>Char Per Tok</ID>
+      <Name>Char Per Tok</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7fe40425-24fb-4c70-89a7-6ee7cff34534">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9df44280-1969-4143-86fa-0b010241952e">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>char_per_tok</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Lyrical Metrics</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f1a7a7bd-967a-4fdf-80d2-fb5acbeeec53">
+      <ID>Avg Token Per Clause</ID>
+      <Name>Avg Token Per Clause</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7eaa5d36-3ec1-4032-b7ab-21c558a0c6d4">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4f281e17-0af8-4513-9766-0486806f0963">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>avg_token_per_clause</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Lyrical Metrics</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ed01875a-16cd-4847-9117-4ed520654bb9">
+      <ID>Swear IT</ID>
+      <Name>Swear IT</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="69d392cd-d36c-4f6f-8d4c-efb8cee1f06f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b0202d6a-72e8-4eb6-8bfd-4aaa30817709">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>swear_IT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Lyrical Metrics</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6cf73f64-01b3-4fda-8550-454c412dd0be">
+      <ID>Swear EN</ID>
+      <Name>Swear EN</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="7a0d3408-3862-42b1-b7b5-e91bb2690625">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ecc75911-a92c-4952-93ea-cb8905a1b3a2">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>swear_EN</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyDisplayFolder>Lyrical Metrics</AttributeHierarchyDisplayFolder>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="730cea28-485e-4316-9fb2-c037bb7ddeb2">
+      <ID>Language</ID>
+      <Name>Language</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bab834ef-962d-44da-8f16-99e26a6948fc">
+          <DataType>WChar</DataType>
+          <DataSize>10</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2bc6eaf6-4659-4633-81f3-d983d70b2adb">
+            <TableID>YOUR_SQL_USERNAME_Dim_Track</TableID>
+            <ColumnID>language</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="1ccca0ea-5f65-4cba-9934-3e6bc133cf40">
+      <ID>Hierarchy</ID>
+      <Name>Track by Category</Name>
+      <Levels>
+        <Level dwd:design-time-name="97961c68-0420-4ec0-aac5-eb97d2ff336c">
+          <ID>Song Category</ID>
+          <Name>Song Category</Name>
+          <SourceAttributeID>Song Category</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="b2fcfcf2-5951-4731-9e19-19489725581c">
+          <ID>Id Track</ID>
+          <Name>Track</Name>
+          <SourceAttributeID>Id Track</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>
