@@ -1,0 +1,41 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+credentials.*
+secrets.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Visual Studio / SQL Server tooling
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+bin/
+obj/
+*.cache
+
+# Local database / temporary files
+*.bak
+*.tmp
+*.temp
+~$*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Keep public portfolio artifacts intentionally committed (PBIX, SSIS, SSAS, CSV, images, PDF).
