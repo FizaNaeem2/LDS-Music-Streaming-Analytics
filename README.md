@@ -1,116 +1,58 @@
 # Music Streaming Analytics & Decision Support System
 
-An end-to-end data engineering, OLAP, and business intelligence project for analyzing music streaming behaviour using **Python, SQL Server, SSIS, SSAS Multidimensional, MDX, and Power BI**.
+An end-to-end data engineering, OLAP, and business intelligence project built with **Python, SQL Server, SSIS, SSAS Multidimensional, MDX, and Power BI**.
 
-The project transforms raw music-streaming data into a structured analytical environment: data is profiled and prepared in Python, modeled in a multidimensional data warehouse, processed through ETL workflows, exposed through an SSAS OLAP cube, queried using MDX, and finally presented through interactive Power BI dashboards.
+The project transforms raw music-streaming data into a structured analytical system: source data is profiled and cleaned in Python, organized into a dimensional warehouse, transformed through SSIS, exposed through an SSAS multidimensional cube, queried with MDX, and presented through Power BI dashboards.
 
----
+> **Authors:** Fiza Naeem and Zahra Hameed Khan  
+> MSc Data Science and Business Informatics — University of Pisa
 
-## Project Overview
-
-Music streaming data contains information about songs, artists, releases, lyrical characteristics, categories, time, geography, and streaming performance.
-
-The objective of this project was to transform this data into a complete **Decision Support System (DSS)** capable of answering analytical questions such as:
-
-- Which artists, songs, and song categories generate the most streams?
-- How has streaming activity evolved over time?
-- Which song categories are growing or declining?
-- How does an artist's geographic origin relate to streaming performance?
-- How are explicit and non-explicit lyrics distributed?
-- How has explicit lyrical content evolved over time?
-- Is artist performance associated with releasing many songs or with a smaller number of high-performing songs?
-- How do current streaming patterns compare with previous periods?
-- What trends can be identified using multidimensional analysis?
-
-The project covers the complete analytical pipeline rather than only visualization.
-
----
-
-## End-to-End Architecture
+## Project at a glance
 
 ```text
-Raw Music Streaming Data
-          │
-          ▼
-┌─────────────────────────────┐
-│ Python Data Preparation     │
-│ Profiling • Cleaning        │
-│ Transformation             │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│ SQL Server Data Warehouse   │
-│ Facts • Dimensions          │
-│ Analytical Schema          │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│ SSIS ETL                    │
-│ Extraction • Transformation│
-│ Loading • Derived Features │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│ SSAS Multidimensional Cube  │
-│ Measures • Dimensions       │
-│ Hierarchies • OLAP Model    │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│ MDX Analytical Layer        │
-│ Trends • Rankings • Growth  │
-│ Time & Category Analysis    │
-└─────────────┬───────────────┘
-              │
-              ▼
-┌─────────────────────────────┐
-│ Power BI                    │
-│ Interactive Dashboards      │
-│ Decision Support            │
-└─────────────────────────────┘
+Raw Data
+   ↓
+Python Data Preparation
+   ↓
+SQL Server Data Warehouse
+   ↓
+SSIS ETL & Analytical Transformations
+   ↓
+SSAS Multidimensional Cube
+   ↓
+MDX Analysis
+   ↓
+Power BI Decision-Support Dashboards
 ```
 
----
+The analytical system supports questions such as:
 
-## Technology Stack
+- Which artists, tracks, and song categories generate the most streams?
+- How does streaming performance evolve over time?
+- Which song categories are growing or declining?
+- How does artist geography relate to streaming performance?
+- How are explicit and non-explicit lyrics distributed?
+- How do lyrical characteristics relate to streams?
+- How do current periods compare with previous periods?
+- Does higher artist output necessarily correspond to higher streaming performance?
+
+## Technology stack
 
 | Layer | Technology | Purpose |
 |---|---|---|
-| Data Preparation | Python | Profiling, cleaning and transformation |
-| Data Storage | SQL Server | Relational analytical data storage |
-| Data Warehousing | SQL / SQL Server | Fact and dimension modeling |
-| ETL | SQL Server Integration Services (SSIS) | Data integration and analytical transformations |
-| OLAP | SQL Server Analysis Services (SSAS) | Multidimensional analytical model |
-| Query Language | MDX | Multidimensional querying and calculations |
-| Visualization | Power BI | Interactive dashboards and decision support |
-| Version Control | GitHub | Project organization and portfolio documentation |
+| Data preparation | Python | Profiling, cleaning, validation, transformation |
+| Storage / warehouse | SQL Server | Fact and dimension storage |
+| ETL | SSIS | Integration, joins, aggregation, derived features |
+| OLAP | SSAS Multidimensional | Dimensions, measures, hierarchies, cube analysis |
+| Analytical querying | MDX | Rankings, contributions, growth and time analysis |
+| Visualization | Power BI | Interactive decision-support dashboards |
+| Version control | GitHub | Public project organization and documentation |
 
----
+## 1. Data preparation
 
-# Project Workflow
+The first stage inspects and prepares the source music data before loading it into the analytical environment. Work includes schema inspection, missing-value analysis, duplicate and consistency checks, type validation, cleaning, preprocessing, and generation of analytics-ready fields.
 
-## 1. Data Preparation
-
-The first stage investigates and prepares the source music-streaming data before it enters the analytical system.
-
-The work includes:
-
-- initial data inspection;
-- attribute and schema analysis;
-- missing-value investigation;
-- duplicate and consistency checks;
-- data-type validation;
-- cleaning and preprocessing;
-- song-level profiling;
-- preparation of data for downstream warehouse and analytical processes.
-
-The goal of this stage is to ensure that the data entering the warehouse is sufficiently structured and consistent for reliable analysis.
-
-Relevant material is available in:
+Relevant implementation:
 
 ```text
 data-preparation/
@@ -119,33 +61,20 @@ data-preparation/
 └── assignment-03/
 ```
 
-Processed project data is maintained separately under:
+The original public artist source is available in [`data/raw/`](data/raw/). The project also used a track-level JSON source containing music metadata, audio features, streaming measures and lyrical content; that source file is intentionally not redistributed in the public repository because it contains full song lyrics.
 
-```text
-data/processed/
-```
+## 2. Data warehouse
 
----
+Prepared data is organized into a dimensional model separating measurable streaming activity from descriptive dimensions.
 
-## 2. Data Warehouse
+Core analytical entities include:
 
-After preparation, the data is organized into a warehouse-oriented analytical structure.
+- **Artist** — artist identity, demographic and geographic attributes
+- **Track** — track metadata, lyrical/audio attributes and song categories
+- **Time** — date, period, quarter and seasonal analysis
+- **Fact Streams** — streaming and popularity measures linked to the dimensions
 
-The warehouse separates measurable streaming activity from the descriptive dimensions used to analyze it.
-
-The dimensional model supports analysis involving concepts such as:
-
-- artists;
-- tracks;
-- time;
-- streaming activity;
-- song characteristics;
-- categories;
-- geographical attributes.
-
-This separation allows streaming measures to be aggregated across multiple analytical perspectives.
-
-Relevant implementation material is available in:
+Relevant implementation:
 
 ```text
 data-warehouse/
@@ -154,44 +83,11 @@ data-warehouse/
 └── assignment-06/
 ```
 
-### Warehouse workflow
+Assignment 6 demonstrates programmatic loading into SQL Server. Its public version reads connection details from environment variables rather than storing credentials in source code.
 
-```text
-Prepared Data
-     │
-     ├──► Dimensions
-     │      ├── Artist
-     │      ├── Track
-     │      └── Time
-     │
-     └──► Streaming Facts
-                │
-                ▼
-        Analytical Warehouse
-```
+## 3. SSIS ETL and analytical transformation
 
-The resulting warehouse provides the relational foundation for both ETL processing and multidimensional analysis.
-
----
-
-## 3. SSIS ETL & Analytical Transformation
-
-SQL Server Integration Services was used to construct the ETL and transformation workflows required by the analytical system.
-
-The SSIS stage goes beyond simple file loading. It performs transformations required for later analytical questions.
-
-The workflows include operations such as:
-
-- extracting source data;
-- transforming and standardizing fields;
-- joining related datasets;
-- sorting and aggregating records;
-- deriving analytical columns;
-- preparing song and artist measures;
-- generating features required by subsequent analyses;
-- producing transformed datasets suitable for warehouse/OLAP consumption.
-
-Relevant material is available in:
+SSIS packages implement the transformation layer used for downstream analytics. The workflows include extraction, joins, lookups, sorting, aggregation, derived columns, regional/category calculations, artist trend measures, gender-based analysis and explicit-content analysis.
 
 ```text
 ssis-etl/
@@ -202,84 +98,35 @@ ssis-etl/
 └── assignment-13/
 ```
 
-These packages demonstrate the movement from raw operational-style data toward analytics-ready information.
+Public SSIS packages use placeholders such as `YOUR_SQL_SERVER`, `YOUR_DATABASE`, and `YOUR_SQL_USERNAME`; local machine/user metadata has also been sanitized where appropriate.
 
----
+## 4. SSAS multidimensional model
 
-## 4. SSAS Multidimensional OLAP Model
+The warehouse is exposed through an **SSAS Multidimensional** project containing dimensions, cube definitions, relationships, measures, partitions and data-source configuration.
 
-The analytical warehouse is exposed through a **SQL Server Analysis Services multidimensional model**.
+Major analytical dimensions are:
 
-The SSAS project defines the dimensions, cube structure, relationships, and measures required for multidimensional analysis.
+- **Artist**
+- **Track**
+- **Time**
 
-Major analytical dimensions include:
+The model enables slicing and aggregation of streaming measures across time, geography, artist attributes and song characteristics.
 
-### Artist
+See [`ssas-cube/`](ssas-cube/).
 
-Used to analyze streaming behaviour according to artist-related attributes, including geographical information.
+## 5. MDX analytical layer
 
-### Track
+MDX is used for multidimensional analysis directly against the cube. The work includes:
 
-Provides song-level analytical information and supports analysis across track characteristics and song categories.
+- ranking and Top-N analysis;
+- geographic and regional analysis;
+- weighted main/featured artist contribution;
+- year-over-year comparison;
+- seasonal benchmarking;
+- category growth calculations;
+- market-share / growth-share analysis.
 
-### Time
-
-Enables temporal analysis across multiple levels and supports trend, historical, and period-comparison calculations.
-
-### Streaming Measures
-
-Streaming activity is represented through measures that can be aggregated across dimensions and hierarchies.
-
-The SSAS model is available under:
-
-```text
-ssas-cube/
-```
-
-It includes the multidimensional project definitions required to describe the analytical cube.
-
----
-
-## 5. MDX Analysis
-
-Once the OLAP model was available, **MDX (Multidimensional Expressions)** was used to perform advanced analysis directly against the cube.
-
-The MDX layer demonstrates analytical operations that go beyond basic relational queries, including:
-
-- multidimensional slicing;
-- calculated members;
-- ranking;
-- contribution analysis;
-- time-based comparison;
-- year-over-year analysis;
-- category comparison;
-- growth calculations;
-- regional analysis;
-- market-share-style analysis.
-
-Relevant MDX work is available under:
-
-```text
-mdx-analysis/
-```
-
-### Examples of analytical tasks
-
-#### Geographic and Regional Analysis
-
-Streaming performance can be analyzed across artist locations and geographical hierarchies to understand where streaming activity is concentrated.
-
-#### Artist Contribution Analysis
-
-Weighted contribution measures were used to distinguish different artist roles when evaluating streaming performance.
-
-For example, analytical logic can assign different weights to main and featured artist contributions rather than treating every appearance identically.
-
-#### Year-over-Year Growth
-
-Previous-period values are obtained through multidimensional time navigation and compared with current performance.
-
-Conceptually:
+A conceptual year-over-year calculation is:
 
 ```text
 Growth % =
@@ -288,203 +135,53 @@ Growth % =
               Previous Period Streams
 ```
 
-This allows categories with increasing or decreasing streaming performance to be identified.
+See [`mdx-analysis/`](mdx-analysis/).
 
-#### Seasonal Analysis
+## 6. Power BI dashboards
 
-Streaming behaviour is also compared across seasonal/time periods to determine whether categories outperform historical benchmarks.
+The final layer converts the analytical model into decision-support dashboards. Each public Power BI folder includes a dashboard image, a sanitized PBIX copy and a focused README.
 
-#### Growth-Share Analysis
+### Dashboard 20 — Geographic Streaming Analysis
 
-Growth and relative streaming contribution are combined to support portfolio-style evaluation of song categories.
+Analyzes stream distribution by artist birthplace and song category, combining geographic visualization with ranked birthplace-level totals.
 
-The MDX layer therefore acts as the analytical bridge between the OLAP cube and the final decision-support visualizations.
+[Open Assignment 20](power-bi/assignment-20/)
 
----
+![Geographic streaming dashboard](power-bi/assignment-20/dashboard_20.png)
 
-# 6. Power BI Decision Support Dashboards
+### Dashboard 21 — Lyrical Content Analysis
 
-The final stage transforms the analytical model into interactive Power BI dashboards.
+Explores explicit vs non-explicit content, lyric length, swear-word frequency, evolution of explicit content over time, and top songs by streams.
 
-Rather than displaying only basic totals, the dashboards address specific decision-support questions.
+[Open Assignment 21](power-bi/assignment-21/)
 
-Power BI material is located under:
+![Lyrical content dashboard](power-bi/assignment-21/dashboard_21.png)
 
-```text
-power-bi/
-├── assignment-20/
-├── assignment-21/
-└── assignment-22/
-```
+### Dashboard 22 — Streaming & Song Category Trends
 
-Each public portfolio folder contains:
-
-```text
-dashboard image
-sanitized PBIX file
-README.md
-```
-
----
-
-## Dashboard 1 — Geographic Streaming Analysis
-
-**Assignment 20**
-
-This dashboard investigates how streaming activity is distributed geographically according to artist birthplace and song category.
-
-### Main analyses
-
-- global distribution of streams by artist birthplace;
-- geographical concentration of streaming activity;
-- stream totals for individual birthplaces;
-- comparison between song categories across locations.
-
-### Key question
-
-> Where do high-performing artists originate, and how does song-category performance differ geographically?
-
-The combination of map and ranked bar visualization makes both global patterns and individual locations visible.
-
-See:
-
-```text
-power-bi/assignment-20/
-```
-
----
-
-## Dashboard 2 — Lyrical Content Analysis
-
-**Assignment 21**
-
-This dashboard explores the relationship between lyrical characteristics and streaming activity.
-
-### Main analyses
-
-- explicit vs non-explicit lyrical content;
-- song-category distribution according to lyric length;
-- swear-word frequency;
-- evolution of explicit content over time;
-- top songs by streams within the lyrics-based analysis.
-
-### Explicit vs Non-Explicit Content
-
-The dashboard compares the streaming share associated with explicit and non-explicit lyrics.
-
-This provides a direct view of how lyrical classification relates to total streaming activity.
-
-### Lyric Length
-
-Song categories are compared according to lyric length, allowing differences in lyrical structure to be examined.
-
-### Swear-Word Distribution
-
-The dashboard also investigates the distribution of detected swear-word counts.
-
-### Evolution Over Time
-
-Explicit content is analyzed historically to determine how its presence within streaming activity changes across years.
-
-### Top Streaming Songs
-
-High-performing tracks are ranked to connect lyrical characteristics with actual streaming outcomes.
-
-See:
-
-```text
-power-bi/assignment-21/
-```
-
----
-
-## Dashboard 3 — Streaming & Song Category Trends
-
-**Assignment 22**
-
-The final dashboard focuses on long-term streaming behaviour, release activity, category growth, and artist output.
-
-### Main analyses
-
-- artist quantity versus streaming performance;
-- streaming growth by song category;
-- song-release trends over time;
-- individual category growth trajectories.
-
-### Quantity vs Quality
-
-A scatter analysis compares:
-
-```text
-Number of songs / observations
-              vs
-        Streaming performance
-```
-
-This addresses the question:
-
-> Do artists achieve high streaming performance by producing more songs, or can a smaller catalogue generate stronger results?
-
-The visualization shows that artist output and streaming performance are not simply equivalent measures.
-
-### Streaming Growth by Song Category
-
-Historical streaming activity is separated across:
+Analyzes artist output versus streaming performance, streaming growth over time, song-release trends and the trajectories of the four analytical song categories:
 
 - Energetic/Emotional
 - Energetic/Party
 - Mellow/Bright
 - Soft/Chill
 
-This allows periods of acceleration, decline, and category-specific behaviour to be identified.
+[Open Assignment 22](power-bi/assignment-22/)
 
-### Song Release Trends
+![Streaming and category trends dashboard](power-bi/assignment-22/dashboard_22.png)
 
-Release activity is also analyzed over time to distinguish growth in the number of songs from growth in actual streaming consumption.
+## Analytical story
 
-### Individual Category Trends
+The project follows a complete **data-to-decision** workflow:
 
-Separate category views make it possible to inspect each trajectory without larger categories visually dominating smaller ones.
+1. **Understand the data** — profile and clean the source datasets.
+2. **Organize it** — design facts and dimensions in SQL Server.
+3. **Transform it** — implement analytical ETL workflows in SSIS.
+4. **Model it multidimensionally** — build an SSAS cube with measures and hierarchies.
+5. **Calculate advanced analytics** — use MDX for ranking, growth, contribution and time comparisons.
+6. **Communicate the results** — build Power BI dashboards for geographic, lyrical and temporal/category analysis.
 
-See:
-
-```text
-power-bi/assignment-22/
-```
-
----
-
-# Analytical Story
-
-The complete project can be understood as a progression from **data to decisions**.
-
-### Stage 1 — What data do we have?
-
-Python profiling and preparation establish the structure and quality of the source data.
-
-### Stage 2 — How should it be organized?
-
-The data warehouse separates measurable streaming activity from dimensions such as Artist, Track, and Time.
-
-### Stage 3 — How do we transform it?
-
-SSIS pipelines perform the integration and transformations required for analysis.
-
-### Stage 4 — How can it be explored multidimensionally?
-
-SSAS exposes the warehouse through an OLAP cube containing dimensions, hierarchies, relationships, and measures.
-
-### Stage 5 — What analytical questions can we calculate?
-
-MDX provides multidimensional calculations for trends, growth, contribution, geography, time comparisons, and category performance.
-
-### Stage 6 — How can the results support decisions?
-
-Power BI translates these analytical structures into dashboards that allow users to explore geographical, lyrical, temporal, artist, and category-level streaming behaviour.
-
----
-
-# Repository Structure
+## Repository structure
 
 ```text
 LDS-Music-Streaming-Analytics/
@@ -500,7 +197,11 @@ LDS-Music-Streaming-Analytics/
 │   └── assignment-06/
 │
 ├── data/
+│   ├── raw/
+│   │   ├── artists.xml
+│   │   └── README.md
 │   └── processed/
+│       └── README.md
 │
 ├── ssis-etl/
 │   ├── assignment-09/
@@ -513,7 +214,7 @@ LDS-Music-Streaming-Analytics/
 │   └── multidimensional OLAP model
 │
 ├── mdx-analysis/
-│   └── multidimensional analytical queries
+│   └── assignments 15–19
 │
 ├── power-bi/
 │   ├── assignment-20/
@@ -521,196 +222,65 @@ LDS-Music-Streaming-Analytics/
 │   └── assignment-22/
 │
 ├── report/
-│   └── project documentation
+│   └── LDS_Music_Streaming_Analytics_Report_Public.pdf
 │
+├── .gitignore
 └── README.md
 ```
 
----
+## Project report
 
-# How the Components Connect
+The full sanitized public report documents the complete workflow, implementation and analytical results:
 
-One important aspect of this repository is that the technologies are **not independent exercises**.
+**[Open the project report](report/LDS_Music_Streaming_Analytics_Report_Public.pdf)**
 
-They form one analytical system.
+## Key skills demonstrated
 
-```text
-Python
-  │
-  │ cleans and prepares
-  ▼
-SQL Server Warehouse
-  │
-  │ stores facts and dimensions
-  ▼
-SSIS
-  │
-  │ integrates and transforms
-  ▼
-SSAS
-  │
-  │ provides multidimensional model
-  ▼
-MDX
-  │
-  │ performs OLAP calculations
-  ▼
-Power BI
-  │
-  ▼
-Business / Analytical Insight
-```
+**Data engineering:** profiling, cleaning, transformation, ETL design, relational loading.  
+**Data warehousing:** dimensional modeling, facts/dimensions, SQL Server implementation.  
+**Business intelligence:** SSIS, SSAS Multidimensional, OLAP modeling, Power BI.  
+**Analytical querying:** MDX, calculated members, ranking, time intelligence and growth analysis.  
+**Visualization:** geographic, temporal, category, distribution and performance analysis.
 
-This integration is the central purpose of the project.
+## Security and public-repository sanitization
 
----
+The original coursework used institutional SQL Server / Analysis Services infrastructure. The public repository has been sanitized so environment-specific credentials and sensitive connection details are not intentionally exposed.
 
-# Key Skills Demonstrated
-
-## Data Engineering
-
-- data profiling;
-- data cleaning;
-- transformation pipelines;
-- ETL design;
-- analytical data preparation.
-
-## Data Warehousing
-
-- dimensional modeling;
-- fact and dimension structures;
-- analytical schema design;
-- SQL Server data management.
-
-## Business Intelligence
-
-- OLAP modeling;
-- multidimensional dimensions and measures;
-- analytical hierarchies;
-- dashboard design;
-- decision-support analysis.
-
-## Analytical Querying
-
-- MDX;
-- calculated members;
-- time intelligence;
-- ranking;
-- growth calculations;
-- multidimensional filtering and aggregation.
-
-## Visualization
-
-- Power BI;
-- geographic visualization;
-- time-series analysis;
-- category comparison;
-- ranking;
-- distribution analysis;
-- interactive analytical dashboards.
-
----
-
-# Security and Public Repository Sanitization
-
-The original development environment used course/institutional infrastructure for SQL Server Analysis Services and related services.
-
-For the public version of this repository, environment-specific connection information was intentionally removed or replaced.
-
-Public Power BI artifacts use placeholders such as:
+Public artifacts use placeholders such as:
 
 ```text
-YOUR_SSAS_ENDPOINT
+YOUR_SQL_SERVER
+YOUR_SQL_USERNAME
 YOUR_DATABASE
+YOUR_SSAS_ENDPOINT
 YOUR_CUBE
 ```
 
-The original private development files are therefore not required to expose institutional server details in the public repository.
+The Assignment 6 SQL loader uses environment variables for runtime credentials, and the public SSIS, SSAS, Power BI and report artifacts were prepared for portfolio publication.
 
-Users who want to reproduce the analytical environment should configure their own SQL Server / Analysis Services connection.
+## Reproducibility notes
 
-No credentials are intentionally included in this repository.
+A full reproduction requires Microsoft BI tooling, including SQL Server, SSIS, SSAS Multidimensional and Power BI Desktop. Server-dependent artifacts need to be reconnected to the reviewer's own environment using the placeholder connection settings.
 
----
+Processed/generated CSV outputs are kept alongside the assignment stages that created or used them rather than duplicated under `data/processed/`.
 
-# Reproducibility Notes
+## How to explore
 
-Some components of the project depend on Microsoft SQL Server Business Intelligence tooling, including:
-
-- SQL Server;
-- SQL Server Integration Services;
-- SQL Server Analysis Services Multidimensional;
-- Power BI Desktop.
-
-Because SSIS and SSAS projects depend on local/server configuration, reproducing the complete system requires configuring an equivalent Microsoft BI environment.
-
-The repository is primarily structured to preserve:
-
-1. the analytical workflow;
-2. transformation logic;
-3. multidimensional model;
-4. MDX analysis;
-5. dashboard implementation;
-6. project documentation.
-
----
-
-# How to Explore This Repository
-
-For a quick overview, a recommended path is:
+For a quick portfolio review:
 
 ```text
-1. README.md
-      ↓
-2. data-preparation/
-      ↓
-3. data-warehouse/
-      ↓
-4. ssis-etl/
-      ↓
-5. ssas-cube/
-      ↓
-6. mdx-analysis/
-      ↓
-7. power-bi/
-      ↓
-8. report/
+README → power-bi/ → report/
 ```
 
-For recruiters or reviewers primarily interested in analytics and visualization, start with:
+For implementation details:
 
 ```text
-power-bi/
+data-preparation/ → data-warehouse/ → ssis-etl/ → ssas-cube/ → mdx-analysis/
 ```
 
-For data engineering and BI implementation, inspect:
+## Project outcome
 
-```text
-data-preparation/
-data-warehouse/
-ssis-etl/
-ssas-cube/
-```
-
-For multidimensional analytics, inspect:
-
-```text
-mdx-analysis/
-```
-
----
-
-# Project Outcome
-
-The final result is an end-to-end **music streaming analytics and decision support system** that demonstrates how raw data can be transformed into progressively more useful analytical structures.
-
-The project integrates:
-
-**data preparation → data warehousing → ETL → OLAP → multidimensional querying → business intelligence visualization**
-
-within a single analytical workflow.
-
-Rather than treating Python, SQL Server, SSIS, SSAS, MDX, and Power BI as isolated technologies, the project demonstrates how they can work together to transform raw streaming data into interpretable analytical information.
+The final result is an end-to-end **Music Streaming Analytics & Decision Support System** demonstrating how Python, SQL Server, SSIS, SSAS, MDX and Power BI can work together as one integrated analytics pipeline rather than as isolated technologies.
 
 ---
 
@@ -721,9 +291,3 @@ Rather than treating Python, SQL Server, SSIS, SSAS, MDX, and Power BI as isolat
 
 MSc Data Science and Business Informatics  
 University of Pisa
-
----
-
-## Project Context
-
-Academic project developed as part of work in **Laboratory of Data Science / Decision Support and Business Intelligence**, demonstrating an end-to-end Microsoft BI and data analytics workflow.
