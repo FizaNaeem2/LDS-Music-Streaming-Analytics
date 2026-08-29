@@ -1,0 +1,27 @@
+WITH 
+ MEMBER [Measures].[Streams Prev Year] AS 
+    (ParallelPeriod([Dim Time].[Year].[Year], 1, [Dim Time].[Year].CurrentMember), [Measures].[Streams])
+
+
+ MEMBER [Measures].[YoY Growth] AS 
+    IIF(
+        [Measures].[Streams Prev Year] = 0, 
+        NULL, 
+        ([Measures].[Streams] - [Measures].[Streams Prev Year]) / [Measures].[Streams Prev Year]
+    )
+    , FORMAT_STRING = "0.00%" 
+
+SELECT 
+    NON EMPTY 
+    { 
+        [Dim Time].[Year].[Year].MEMBERS 
+    } ON COLUMNS,
+
+    NON EMPTY 
+    { 
+        [Dim Track].[Song Category].[Song Category].MEMBERS 
+    } ON ROWS
+
+FROM [Group ID 5 DB]
+
+WHERE ( [Measures].[YoY Growth] )
