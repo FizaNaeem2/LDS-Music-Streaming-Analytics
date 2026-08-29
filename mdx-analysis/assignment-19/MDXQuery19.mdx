@@ -1,0 +1,44 @@
+WITH 
+    MEMBER [Measures].[Streams Prev Year] AS 
+        (ParallelPeriod([Dim Time].[Year].[Year], 1, [Dim Time].[Year].CurrentMember), [Measures].[Streams])
+
+    MEMBER [Measures].[YoY Growth %] AS 
+        IIF(
+            IsEmpty([Measures].[Streams Prev Year]) OR [Measures].[Streams Prev Year] = 0, 
+            NULL, 
+            ([Measures].[Streams] - [Measures].[Streams Prev Year]) / [Measures].[Streams Prev Year]
+        ),
+        FORMAT_STRING = "0.00%"
+
+    /* safer total for market share */
+    MEMBER [Measures].[Total Streams All Categories] AS
+        SUM(
+            [Dim Track].[Song Category].[Song Category].MEMBERS,
+            [Measures].[Streams]
+        )
+
+    MEMBER [Measures].[Market Share %] AS
+        IIF(
+            IsEmpty([Measures].[Total Streams All Categories]) OR [Measures].[Total Streams All Categories] = 0,
+            NULL,
+            [Measures].[Streams] / [Measures].[Total Streams All Categories]
+        ),
+        FORMAT_STRING = "0.00%"
+
+SELECT 
+    { 
+        [Measures].[Streams], 
+        [Measures].[Streams Prev Year],
+        [Measures].[YoY Growth %],
+        [Measures].[Market Share %]
+    } ON COLUMNS,
+
+    NON EMPTY 
+    ORDER(
+        [Dim Track].[Song Category].[Song Category].MEMBERS,
+        [Measures].[Streams],
+        DESC
+    ) ON ROWS
+
+FROM [Group ID 5 DB]
+WHERE ( [Dim Time].[Year].&[2025] )
