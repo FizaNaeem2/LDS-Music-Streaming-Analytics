@@ -1,0 +1,55 @@
+WITH
+MEMBER [Measures].[Streams (Main)] AS
+    [Measures].[Streams]
+
+MEMBER [Measures].[Streams (Featured)] AS
+    SUM(
+        FILTER(
+            [Dim Track].[Id Track].[Id Track].MEMBERS,
+            InStr(
+                CSTR([Dim Track].[Id Track].CurrentMember.Properties("Featured Artists")),
+                [Dim Artist].[Id Artist].CurrentMember.Name
+            ) > 0
+        ),
+        (
+            [Measures].[Streams],
+            [Dim Artist].[Id Artist].[All]   /* remove main-artist slicing */
+        )
+    )
+
+MEMBER [Measures].[Yearly Total Streams] AS
+    (
+        [Measures].[Streams],
+        [Dim Artist].[Id Artist].[All]
+    )
+
+MEMBER [Measures].[Weighted Artist Streams] AS
+    ( [Measures].[Streams (Main)] * 0.8 )
+    +
+    ( [Measures].[Streams (Featured)] * 0.2 )
+
+MEMBER [Measures].[Weighted Stream Share] AS
+    DIVIDE(
+        [Measures].[Weighted Artist Streams],
+        [Measures].[Yearly Total Streams]
+    ),
+    FORMAT_STRING = "Percent"
+
+SELECT
+{
+    [Measures].[Streams (Main)],
+    [Measures].[Streams (Featured)],
+    [Measures].[Weighted Artist Streams],
+    [Measures].[Yearly Total Streams],
+    [Measures].[Weighted Stream Share]
+} ON COLUMNS,
+
+NON EMPTY
+FILTER(
+    [Dim Time].[Year].[Year].MEMBERS
+    *
+    [Dim Artist].[Id Artist].[Id Artist].MEMBERS,
+    [Measures].[Weighted Stream Share] > 0
+) ON ROWS
+
+FROM [Group ID 5 DB]
