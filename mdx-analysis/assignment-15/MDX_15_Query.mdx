@@ -1,0 +1,142 @@
+WITH
+
+
+    MEMBER [Dim Time].[Month].[Month 1] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[1]
+                OR [Dim Time].[Month].CurrentMember.Name = "1"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 2] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[2]
+                OR [Dim Time].[Month].CurrentMember.Name = "2"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 3] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[3]
+                OR [Dim Time].[Month].CurrentMember.Name = "3"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 4] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[4]
+                OR [Dim Time].[Month].CurrentMember.Name = "4"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 5] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[5]
+                OR [Dim Time].[Month].CurrentMember.Name = "5"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 6] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[6]
+                OR [Dim Time].[Month].CurrentMember.Name = "6"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 7] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[7]
+                OR [Dim Time].[Month].CurrentMember.Name = "7"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 8] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[8]
+                OR [Dim Time].[Month].CurrentMember.Name = "8"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 9] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[9]
+                OR [Dim Time].[Month].CurrentMember.Name = "9"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 10] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[10]
+                OR [Dim Time].[Month].CurrentMember.Name = "10"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 11] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[11]
+                OR [Dim Time].[Month].CurrentMember.Name = "11"
+            )
+        )
+
+    MEMBER [Dim Time].[Month].[Month 12] AS
+        AGGREGATE(
+            FILTER(
+                [Dim Time].[Month].[Month].MEMBERS,
+                [Dim Time].[Month].CurrentMember IS [Dim Time].[Month].&[12]
+                OR [Dim Time].[Month].CurrentMember.Name = "12"
+            )
+        )
+
+SELECT
+
+    {
+        [Dim Time].[Month].[Month 1],
+        [Dim Time].[Month].[Month 2],
+        [Dim Time].[Month].[Month 3],
+        [Dim Time].[Month].[Month 4],
+        [Dim Time].[Month].[Month 5],
+        [Dim Time].[Month].[Month 6],
+        [Dim Time].[Month].[Month 7],
+        [Dim Time].[Month].[Month 8],
+        [Dim Time].[Month].[Month 9],
+        [Dim Time].[Month].[Month 10],
+        [Dim Time].[Month].[Month 11],
+        [Dim Time].[Month].[Month 12]
+    } ON COLUMNS,
+
+    NON EMPTY
+    GENERATE(
+        [Dim Artist].[Artist Location].[Country].MEMBERS,
+        { [Dim Artist].[Artist Location].CurrentMember }
+        +
+        DESCENDANTS(
+            [Dim Artist].[Artist Location].CurrentMember,
+            [Dim Artist].[Artist Location].[Region]
+        )
+    ) ON ROWS
+
+FROM [Group ID 5 DB]
+
+WHERE ( [Measures].[Streams] )
