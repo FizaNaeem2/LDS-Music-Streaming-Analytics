@@ -1,0 +1,42 @@
+WITH 
+MEMBER [Measures].[Streams Previous Year] AS
+    (
+        [Measures].[Streams], 
+        [Dim Time].[Year].CurrentMember.Lag(1)
+    )
+MEMBER [Measures].[PrevYearSeasonAvg] AS
+    AVG(
+        [Dim Track].[Song Category].[Song Category].MEMBERS,
+        (
+            [Measures].[Streams],
+            [Dim Time].[Season].CurrentMember,
+            ParallelPeriod([Dim Time].[Year].[Year], 1, [Dim Time].[Year].CurrentMember)
+        )
+    )
+MEMBER [Measures].[Percentage Increase] AS
+    IIF(
+        [Measures].[Streams Previous Year] = 0, 
+        NULL, 
+        ([Measures].[Streams] - [Measures].[Streams Previous Year]) 
+        / [Measures].[Streams Previous Year]
+    ), 
+    FORMAT_STRING = "Percent"
+
+SELECT 
+    { 
+        [Measures].[Streams], 
+        [Measures].[Streams Previous Year], 
+        [Measures].[Percentage Increase] 
+    } ON COLUMNS,
+
+    NON EMPTY 
+    FILTER(
+        (
+            [Dim Time].[Year].[Year].MEMBERS * [Dim Time].[Season].[Season].MEMBERS * [Dim Track].[Song Category].[Song Category].MEMBERS
+        ),
+       
+[Measures].[Streams] > [Measures].[PrevYearSeasonAvg]
+        AND 
+        [Measures].[Streams Previous Year] > 0
+    ) ON ROWS
+FROM [Group ID 5 DB]
